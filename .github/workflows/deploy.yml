@@ -51,4 +51,4 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/money-book-backend:latest
-            docker compose restart
+            docker-compose restart
