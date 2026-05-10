@@ -46,7 +46,7 @@ jobs:
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
+          username: ec2-user
           key: ${{ secrets.EC2_KEY }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/money-book-backend:latest
