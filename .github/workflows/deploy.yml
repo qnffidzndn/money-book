@@ -41,7 +41,7 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/money-book-backend:latest
+          tags: facepark/money-book-backend:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1
@@ -50,5 +50,6 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/money-book-backend:latest
-            docker-compose restart
+            cd ~/money-book
+            docker pull facepark/money-book-backend:latest
+            docker-compose up -d
