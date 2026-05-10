@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/money_book?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://mysql:3306/money_book?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
     username: moneybook
     password: moneybook1234
     driver-class-name: com.mysql.cj.jdbc.Driver
