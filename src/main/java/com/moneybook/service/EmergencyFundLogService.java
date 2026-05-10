@@ -22,6 +22,15 @@ public class EmergencyFundLogService {
     private final EmergencyFundLogRepository emergencyFundLogRepository;
 
     /**
+     * 전체 비상금 거래 내역을 조회합니다.
+     *
+     * @return 전체 비상금 거래 내역 목록
+     */
+    public List<EmergencyFundLog> findAll() {
+        return emergencyFundLogRepository.findAll();
+    }
+
+    /**
      * 특정 기간 내의 비상금 거래 내역을 조회합니다.
      *
      * @param start 조회 시작 날짜 (포함)

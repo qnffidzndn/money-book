@@ -35,6 +35,15 @@ public class SavingsAccountService {
     }
 
     /**
+     * 전체 적금 상품 목록을 조회합니다.
+     *
+     * @return 전체 적금 상품 목록
+     */
+    public List<SavingsAccount> findAll() {
+        return savingsAccountRepository.findAll();
+    }
+
+    /**
      * 특정 구성원의 전체 적금 상품 목록을 조회합니다.
      *
      * @param memberId 구성원 ID

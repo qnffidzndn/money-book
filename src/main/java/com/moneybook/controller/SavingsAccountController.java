@@ -30,8 +30,17 @@ public class SavingsAccountController {
     private final SavingsAccountService savingsAccountService;
     private final MemberService memberService;
 
-    @Operation(summary = "적금 상품 목록 조회", description = "특정 구성원의 전체 적금 상품 목록을 조회합니다.")
+    @Operation(summary = "전체 적금 상품 목록 조회", description = "전체 적금 상품 목록을 조회합니다.")
     @GetMapping
+    public ApiResponse<List<SavingsAccountResponse>> getAllSavingsAccounts() {
+        List<SavingsAccountResponse> response = savingsAccountService.findAll().stream()
+                .map(SavingsAccountResponse::from)
+                .toList();
+        return ApiResponse.success(response);
+    }
+
+    @Operation(summary = "구성원별 적금 상품 목록 조회", description = "특정 구성원의 전체 적금 상품 목록을 조회합니다.")
+    @GetMapping(params = "memberId")
     public ApiResponse<List<SavingsAccountResponse>> getSavingsAccounts(@RequestParam Long memberId) {
         List<SavingsAccountResponse> response = savingsAccountService.findByMember(memberId).stream()
                 .map(SavingsAccountResponse::from)

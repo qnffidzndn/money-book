@@ -28,6 +28,15 @@ public class EmergencyFundLogController {
 
     private final EmergencyFundLogService emergencyFundLogService;
 
+    @Operation(summary = "전체 비상금 내역 조회", description = "전체 비상금 거래 내역을 조회합니다.")
+    @GetMapping
+    public ApiResponse<List<EmergencyFundLogResponse>> getLogs() {
+        List<EmergencyFundLogResponse> response = emergencyFundLogService.findAll().stream()
+                .map(EmergencyFundLogResponse::from)
+                .toList();
+        return ApiResponse.success(response);
+    }
+
     @Operation(summary = "유형별 비상금 내역 조회", description = "IN(입금) 또는 OUT(출금) 유형으로 비상금 거래 내역을 조회합니다.")
     @GetMapping(params = "type")
     public ApiResponse<List<EmergencyFundLogResponse>> getLogsByType(@RequestParam TransactionType type) {
