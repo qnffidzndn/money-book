@@ -47,6 +47,8 @@ public class MemberController {
     public ApiResponse<MemberResponse> createMember(@Valid @RequestBody MemberSaveRequest request) {
         Member member = Member.builder()
                 .name(request.getName())
+                .username(request.getUsername())
+                .password(request.getPassword())
                 .build();
         return ApiResponse.success("구성원이 생성되었습니다.", MemberResponse.from(memberService.save(member)));
     }

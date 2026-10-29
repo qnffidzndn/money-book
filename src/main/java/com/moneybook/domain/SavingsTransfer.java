@@ -35,18 +35,18 @@ public class SavingsTransfer extends BaseEntity {
     /**
      * 적금 만기 수령 또는 자금 이동 실행 날짜
      */
-    @Column(name = "transfer_date", nullable = false)
+    @Column(name = "transfer_date", nullable = false, columnDefinition = "DATE COMMENT '자금 이동 실행 날짜'")
     private LocalDate transferDate;
 
     /**
      * 이동된 자금 금액 (원 단위)
      */
-    @Column(nullable = false, precision = 15, scale = 2)
+    @Column(nullable = false, precision = 15, scale = 2, columnDefinition = "DECIMAL(15, 2) COMMENT '이동된 자금 금액 (원 단위)'")
     private BigDecimal amount;
 
     /**
      * 자금이 이동된 목적지 계좌 또는 용도 (예: 주택청약, 생활비 통장)
      */
-    @Column(name = "to_account", length = 100)
+    @Column(name = "to_account", length = 100, columnDefinition = "VARCHAR(100) COMMENT '자금 이동 목적지 계좌 또는 용도'")
     private String toAccount;
 }

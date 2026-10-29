@@ -3,6 +3,7 @@ package com.moneybook.controller;
 import com.moneybook.domain.EmergencyFundLog;
 import com.moneybook.domain.TransactionType;
 import com.moneybook.dto.request.EmergencyFundLogSaveRequest;
+import com.moneybook.dto.request.EmergencyFundLogUpdateRequest;
 import com.moneybook.dto.response.ApiResponse;
 import com.moneybook.dto.response.EmergencyFundLogResponse;
 import com.moneybook.service.EmergencyFundLogService;
@@ -69,5 +70,22 @@ public class EmergencyFundLogController {
                 .build();
         return ApiResponse.success("비상금 내역이 생성되었습니다.",
                 EmergencyFundLogResponse.from(emergencyFundLogService.save(log)));
+    }
+
+    @Operation(summary = "비상금 내역 수정", description = "비상금 거래 내역의 날짜, 금액, 유형, 메모를 수정합니다.")
+    @PutMapping("/{id}")
+    public ApiResponse<EmergencyFundLogResponse> updateLog(
+            @PathVariable Long id,
+            @Valid @RequestBody EmergencyFundLogUpdateRequest request) {
+        EmergencyFundLog updated = emergencyFundLogService.update(
+                id, request.getDate(), request.getAmount(), request.getType(), request.getMemo());
+        return ApiResponse.success(EmergencyFundLogResponse.from(updated));
+    }
+
+    @Operation(summary = "비상금 내역 삭제", description = "비상금 거래 내역을 삭제합니다.")
+    @DeleteMapping("/{id}")
+    public ApiResponse<Void> deleteLog(@PathVariable Long id) {
+        emergencyFundLogService.deleteById(id);
+        return ApiResponse.success("비상금 내역이 삭제되었습니다.", null);
     }
 }

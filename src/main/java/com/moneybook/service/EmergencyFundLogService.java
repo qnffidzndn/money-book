@@ -2,11 +2,14 @@ package com.moneybook.service;
 
 import com.moneybook.domain.EmergencyFundLog;
 import com.moneybook.domain.TransactionType;
+import com.moneybook.exception.BusinessException;
+import com.moneybook.exception.ErrorCode;
 import com.moneybook.repository.EmergencyFundLogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -60,5 +63,18 @@ public class EmergencyFundLogService {
     @Transactional
     public EmergencyFundLog save(EmergencyFundLog emergencyFundLog) {
         return emergencyFundLogRepository.save(emergencyFundLog);
+    }
+
+    @Transactional
+    public EmergencyFundLog update(Long id, LocalDate date, BigDecimal amount, TransactionType type, String memo) {
+        EmergencyFundLog log = emergencyFundLogRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(ErrorCode.INVALID_INPUT, "해당 비상금 내역을 찾을 수 없습니다. id=" + id));
+        log.update(date, amount, type, memo);
+        return log;
+    }
+
+    @Transactional
+    public void deleteById(Long id) {
+        emergencyFundLogRepository.deleteById(id);
     }
 }

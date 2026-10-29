@@ -20,4 +20,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
      * @return 해당 이름의 구성원 (없으면 empty)
      */
     Optional<Member> findByName(String name);
+
+    Optional<Member> findByUsername(String username);
 }

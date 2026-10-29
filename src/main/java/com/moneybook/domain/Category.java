@@ -29,14 +29,14 @@ public class Category extends BaseEntity {
     /**
      * 카테고리 이름 (예: 식비, 교통비, 적금 등)
      */
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, columnDefinition = "VARCHAR(50) COMMENT '카테고리 이름'")
     private String name;
 
     /**
      * 카테고리 유형 (EXPENSE: 지출, SAVING: 저축)
      */
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 10, columnDefinition = "VARCHAR(10) COMMENT '카테고리 유형 (EXPENSE: 지출, SAVING: 저축)'")
     private CategoryType type;
 
     /**

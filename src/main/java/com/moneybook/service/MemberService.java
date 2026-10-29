@@ -4,6 +4,7 @@ import com.moneybook.domain.Member;
 import com.moneybook.exception.MemberNotFoundException;
 import com.moneybook.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     /**
      * 전체 구성원 목록을 조회합니다.
@@ -49,6 +51,11 @@ public class MemberService {
      */
     @Transactional
     public Member save(Member member) {
-        return memberRepository.save(member);
+        Member encoded = Member.builder()
+                .name(member.getName())
+                .username(member.getUsername())
+                .password(passwordEncoder.encode(member.getPassword()))
+                .build();
+        return memberRepository.save(encoded);
     }
 }

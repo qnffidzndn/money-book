@@ -34,13 +34,13 @@ public class ActualSpending extends BaseEntity {
     /**
      * 실제 지출 또는 저축 금액 (원 단위)
      */
-    @Column(name = "actual_amount", nullable = false, precision = 15, scale = 2)
+    @Column(name = "actual_amount", nullable = false, precision = 15, scale = 2, columnDefinition = "DECIMAL(15, 2) COMMENT '실제 지출 또는 저축 금액 (원 단위)'")
     private BigDecimal actualAmount;
 
     /**
      * 사용 내역에 대한 메모 (예: 마트 장보기, 카페 등)
      */
-    @Column(length = 255)
+    @Column(length = 255, columnDefinition = "VARCHAR(255) COMMENT '사용 내역 메모'")
     private String memo;
 
     /**

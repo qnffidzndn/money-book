@@ -34,13 +34,13 @@ public class Income extends BaseEntity {
     /**
      * 월급 귀속 연월 (형식: yyyy-MM, 예: 2025-01)
      */
-    @Column(name = "ym", nullable = false, length = 7)
+    @Column(name = "ym", nullable = false, length = 7, columnDefinition = "VARCHAR(7) COMMENT '월급 귀속 연월 (yyyy-MM)'")
     private String yearMonth;
 
     /**
      * 해당 월 월급 금액 (원 단위)
      */
-    @Column(nullable = false, precision = 15, scale = 2)
+    @Column(nullable = false, precision = 15, scale = 2, columnDefinition = "DECIMAL(15, 2) COMMENT '월급 금액 (원 단위)'")
     private BigDecimal amount;
 
     /**

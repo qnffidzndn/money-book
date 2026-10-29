@@ -28,19 +28,19 @@ public class AssetSnapshot extends BaseEntity {
     /**
      * 자산 집계 기준 연월 (형식: yyyy-MM, 예: 2025-01)
      */
-    @Column(name = "ym", nullable = false, length = 7)
+    @Column(name = "ym", nullable = false, length = 7, columnDefinition = "VARCHAR(7) COMMENT '자산 집계 기준 연월 (yyyy-MM)'")
     private String yearMonth;
 
     /**
      * 해당 월 말 기준 두 구성원의 합산 총자산 (원 단위)
      */
-    @Column(name = "total_amount", nullable = false, precision = 15, scale = 2)
+    @Column(name = "total_amount", nullable = false, precision = 15, scale = 2, columnDefinition = "DECIMAL(15, 2) COMMENT '합산 총자산 (원 단위)'")
     private BigDecimal totalAmount;
 
     /**
      * 해당 월 자산에 대한 메모 (예: 연말정산 환급금 포함 등)
      */
-    @Column(length = 255)
+    @Column(length = 255, columnDefinition = "VARCHAR(255) COMMENT '해당 월 자산 메모'")
     private String memo;
 
     /**
